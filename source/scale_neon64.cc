@@ -20,6 +20,9 @@ extern "C" {
 // This module is for GCC Neon armv8 64 bit.
 #if !defined(LIBYUV_DISABLE_NEON) && defined(__aarch64__)
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wasm-operand-widths"
+
 // Read 32x1 throw away even pixels, and write 16x1.
 void ScaleRowDown2_NEON(const uint8* src_ptr, ptrdiff_t src_stride,
                         uint8* dst, int dst_width) {
@@ -758,6 +761,9 @@ void ScaleARGBRowDownEvenBox_NEON(const uint8* src_argb, ptrdiff_t src_stride,
   : "memory", "cc", "v0", "v1", "v2", "v3", "v4", "v5", "v6", "v7", "v16"
   );
 }
+
+#pragma GCC diagnostic pop
+
 #endif  // !defined(LIBYUV_DISABLE_NEON) && defined(__aarch64__)
 
 #ifdef __cplusplus

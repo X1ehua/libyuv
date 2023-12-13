@@ -18,6 +18,9 @@ extern "C" {
 // This module is for GCC Neon armv8 64 bit.
 #if !defined(LIBYUV_DISABLE_NEON) && defined(__aarch64__)
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wasm-operand-widths"
+
 // Read 8 Y, 4 U and 4 V from 422
 #define READYUV422                                                             \
     MEMACCESS(0)                                                               \
@@ -3039,6 +3042,9 @@ void SobelYRow_NEON(const uint8* src_y0, const uint8* src_y1,
   );
 }
 #endif  // HAS_SOBELYROW_NEON
+
+#pragma GCC diagnostic pop
+
 #endif  // !defined(LIBYUV_DISABLE_NEON) && defined(__aarch64__)
 
 #ifdef __cplusplus

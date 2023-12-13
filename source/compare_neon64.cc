@@ -18,6 +18,9 @@ extern "C" {
 
 #if !defined(LIBYUV_DISABLE_NEON) && defined(__aarch64__)
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wasm-operand-widths"
+
 uint32 SumSquareError_NEON(const uint8* src_a, const uint8* src_b, int count) {
   volatile uint32 sse;
   asm volatile (
@@ -54,6 +57,8 @@ uint32 SumSquareError_NEON(const uint8* src_a, const uint8* src_b, int count) {
     : "cc", "v0", "v1", "v2", "v3", "v16", "v17", "v18", "v19");
   return sse;
 }
+
+#pragma GCC diagnostic pop
 
 #endif  // !defined(LIBYUV_DISABLE_NEON) && defined(__aarch64__)
 

@@ -3117,6 +3117,7 @@ void SobelYRow_NEON(const uint8* src_y0, const uint8* src_y1,
   : "cc", "memory", "q0", "q1"  // Clobber List
   );
 }
+
 #endif  // defined(__ARM_NEON__) && !defined(__aarch64__)
 
 #ifdef __cplusplus
